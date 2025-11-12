@@ -1,0 +1,114 @@
+*{
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: sans-serif;
+    overflow-x: hidden;
+}
+
+.div_navBar {
+    background-color: black;
+     display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 120px;
+    width: 100%;
+}
+
+.navBar{
+    display: flex;
+    list-style: none;
+    gap: 40px;
+    justify-content: space-between;
+
+}
+
+.div_navBar img {
+    width: 100px;
+    height: 100px;
+}
+
+.div_navBar a{
+    color: #fff;
+    outline: none;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+/* .div_navBar li {
+   margin-right: 60px; 
+
+} */
+
+.div_navBar .barra {
+ color: #fff;
+ display: block;
+}
+
+.inicial-video {
+    width: 100%;
+    height: 900px;
+}
+
+.inicial-video video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.sobre {
+    display: flex;
+    flex-direction: column;
+    background-color: #000;
+    width: 100%;
+    height: 900px;
+    align-items: center;
+}
+
+.sobre h2 {
+    color: #fff;
+    font-size: 40px;
+     margin-top: 90px;
+}
+
+.box-pai-sobre {
+    display: flex;
+    gap: 90px;
+    margin-top: 90px;
+}
+
+.box-sobre {
+    /* background-color: #808080; */
+    background-image: url('../img/conectar-fas.png');
+    background-size: cover;
+    filter: brightness(60%); /* retirar isso e modificar a img depois  */
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    height: 500px;
+}
+
+
+.box-sobre p {
+    color: #fff;
+    font-size: 25px;
+}
+
+.box-sobre-img {
+    width: 280px;
+    height: 280px;
+    padding: 20px 0px 0 20px;
+}
+
+.box-sobre-img img {
+    width: 100%;
+    height: 100%;
+}
+
+.titulo-box-sobre h3 {
+    color: #fff;
+    font-size: 30px;
+    margin-top: 90px;
+}
