@@ -80,26 +80,33 @@ body {
 }
 
 .box-sobre {
-    /* background-color: #808080; */
-    background-image: url('../img/conectar-fas.png');
+    background-color: #1D1E1F;
     background-size: cover;
-    filter: brightness(60%); /* retirar isso e modificar a img depois  */
     display: flex;
     flex-direction: column;
     width: 400px;
     height: 500px;
+    /* padding: 32px 12px 12px; */
+    transition: tansform 0.3s ease;
 }
+
+.box-sobre:hover {
+    transform: scale(1.1);
+}
+
 
 
 .box-sobre p {
     color: #fff;
     font-size: 25px;
+    margin-top: 10px;
 }
 
 .box-sobre-img {
-    width: 280px;
+    width: 100%;
     height: 280px;
-    padding: 20px 0px 0 20px;
+    /* padding: 20px 0px 0 20px; */
+    
 }
 
 .box-sobre-img img {
@@ -107,8 +114,38 @@ body {
     height: 100%;
 }
 
+.box-sobre-img::before {
+    content: '';
+    position: absolute;
+    background-color: #fff;
+    width: 50px;
+    height: 5px;
+    margin-top: 293px;
+    margin-left: 35px;
+}
+
+
+.box-sobre-img::before:hover {
+    filter: brightness(2.0);
+    color: #8F00FF;
+    text-shadow: 0 0 10px white;
+}
+
+.titulo-box-sobre {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .titulo-box-sobre h3 {
     color: #fff;
     font-size: 30px;
-    margin-top: 90px;
+    padding: 20px -10px 0 20px;
+}
+
+
+.texto-corpo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
