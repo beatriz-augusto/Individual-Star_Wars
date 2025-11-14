@@ -10,31 +10,33 @@
 
   <script src="./js/sessao.js"></script>
 
-  <link rel="stylesheet" href="./css/estilo.css" />
+  <link rel="stylesheet" href="css/style.css" />
   <link rel="icon" href="./assets/icon/favicon2.ico" />
   <link rel="preconnect" href="https://fonts.gstatic.com" />
 </head>
 
-<body onload="listar()">
+<body>
   <!--header inicio-->
-  <div class="header">
-    <div class="container">
-      <h1 class="titulo">AquaTech</h1>
-      <ul class="navbar">
-        <li>
-          <a href="index.html">Inicial</a>
-        </li>
-        <li>
-          <a href="simulador.html">Simulador</a>
-        </li>
-        <li>|</li>
-        <li>
-          <a href="login.html">Login</a>
-        </li>
-        <li class="agora">
-          <a href="#">Cadastro</a>
-        </li>
-      </ul>
+    <div class="div_navBar">
+        <img src="img/Logo.png" alt="">
+        <ul class="navBar">
+            <li>
+                <a href="index.html">Página Inicial</a>
+            </li>
+            <li>
+                <a href="filmes">Filmes</a>
+            </li>
+            <li>
+                <a href="personagens">personagens</a>
+            </li>
+            <li>
+                <a href="historia">historia da saga</a>
+            </li>
+            <li class="barra">|</li>
+            <li>
+                <a href="cadastro">Cadastre-se</a>
+            </li>
+        </ul>
     </div>
   </div>
   <!--header fim-->
@@ -54,10 +56,6 @@
                          Assim que inserir vá para o script abaixo.
                      -->
           <div class="campo">
-            <span>Código de ativação:</span>
-            <input id="codigo_input" type="text" placeholder="Insira aqui seu código" />
-          </div>
-          <div class="campo">
             <span>Nome:</span>
             <input id="nome_input" type="text" placeholder="Seu nome" />
           </div>
@@ -73,11 +71,15 @@
             <span>Confirmação da Senha:</span>
             <input id="confirmacao_senha_input" type="password" placeholder="******" />
           </div>
+          <div class="campo">
+            <span>Nome de usuário:</span>
+            <input id="apelido_input" type="text" placeholder="seu nick name" />
+          </div>
           <button class="botao" onclick="cadastrar()">Cadastrar</button>
         </div>
-        <div id="div_aguardar" class="loading-div">
+        <!-- <div id="div_aguardar" class="loading-div">
           <img src="./assets/circle-loading.gif" id="loading-gif" />
-        </div>
+        </div> -->
 
         <div id="div_erros_login"></div>
       </div>
@@ -86,11 +88,33 @@
 
   <!--footer inicio-->
   <div class="footer">
-    <div class="container">
-      <h4>Feito com amor por aluno &hearts; SPTech &copy; 2023</h4>
-      <span class="version">v1.0.0</span>
+        <h4>Diário Jedi</h4>
+        <h5>Que a força esteja com você!</h5>
+        <div id="footer-links">
+            <ul class="footer1">
+                <li>
+                    <a href="index.html">Página Inicial</a>
+                </li>
+                <li>
+                    <a href="filmes">Filmes</a>
+                </li>
+                <li>
+                    <a href="personagens">personagens</a>
+                </li>
+                <li>
+                    <a href="cadastro">Cadastre-se</a>
+                </li>
+                <li>
+                    <a href="historia">historia da saga</a>
+                </li>
+            </ul>
+        </div>
+        <div class="decoracao-footer"></div>
+        <div class="texto-footer">
+            <p>Copyright © 2025. Diário Jedi é um site criado por fã. Star Wars, seus logotipos, personagens e propriedade
+            intelectual são da Lucasfilm.</p>
+        </div>
     </div>
-  </div>
   <!--footer fim-->
 </body>
 
@@ -110,7 +134,7 @@
     var emailVar = email_input.value;
     var senhaVar = senha_input.value;
     var confirmacaoSenhaVar = confirmacao_senha_input.value;
-    var codigoVar = codigo_input.value;
+    var apelidoVar = apelido_input.value;
     var idEmpresaVincular
 
     // Verificando se há algum campo em branco
@@ -119,7 +143,7 @@
       emailVar == "" ||
       senhaVar == "" ||
       confirmacaoSenhaVar == "" ||
-      codigoVar == ""
+      apelidoVar == ""
     ) {
       cardErro.style.display = "block";
       mensagem_erro.innerHTML =
@@ -132,17 +156,17 @@
     }
 
     // Verificando se o código de ativação é de alguma empresa cadastrada
-    for (let i = 0; i < listaEmpresasCadastradas.length; i++) {
-      if (listaEmpresasCadastradas[i].codigo_ativacao == codigoVar) {
-        idEmpresaVincular = listaEmpresasCadastradas[i].id
-        console.log("Código de ativação válido.");
-        break;
-      } else {
-        cardErro.style.display = "block";
-        mensagem_erro.innerHTML = "(Mensagem de erro para código inválido)";
-        finalizarAguardar();
-      }
-    }
+    // for (let i = 0; i < listaEmpresasCadastradas.length; i++) {
+    //   if (listaEmpresasCadastradas[i].codigo_ativacao == codigoVar) {
+    //     idEmpresaVincular = listaEmpresasCadastradas[i].id
+    //     console.log("Código de ativação válido.");
+    //     break;
+    //   } else {
+    //     cardErro.style.display = "block";
+    //     mensagem_erro.innerHTML = "(Mensagem de erro para código inválido)";
+    //     finalizarAguardar();
+    //   }
+    // }
 
     // Enviando o valor da nova input
     fetch("/usuarios/cadastrar", {
@@ -156,7 +180,8 @@
         nomeServer: nomeVar,
         emailServer: emailVar,
         senhaServer: senhaVar,
-        idEmpresaVincularServer: idEmpresaVincular
+        idEmpresaVincularServer: idEmpresaVincular,
+        apelidoServer: apelidoVar
       }),
     })
       .then(function (resposta) {
@@ -187,24 +212,24 @@
   }
 
   // Listando empresas cadastradas 
-  function listar() {
-    fetch("/empresas/listar", {
-      method: "GET",
-    })
-      .then(function (resposta) {
-        resposta.json().then((empresas) => {
-          empresas.forEach((empresa) => {
-            listaEmpresasCadastradas.push(empresa);
+  // function listar() {
+  //   fetch("/empresas/listar", {
+  //     method: "GET",
+  //   })
+  //     .then(function (resposta) {
+  //       resposta.json().then((empresas) => {
+  //         empresas.forEach((empresa) => {
+  //           listaEmpresasCadastradas.push(empresa);
 
-            console.log("listaEmpresasCadastradas")
-            console.log(listaEmpresasCadastradas[0].codigo_ativacao)
-          });
-        });
-      })
-      .catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-      });
-  }
+  //           console.log("listaEmpresasCadastradas")
+  //           console.log(listaEmpresasCadastradas[0].codigo_ativacao)
+  //         });
+  //       });
+  //     })
+  //     .catch(function (resposta) {
+  //       console.log(`#ERRO: ${resposta}`);
+  //     });
+  // }
 
   function sumirMensagem() {
     cardErro.style.display = "none";
