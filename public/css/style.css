@@ -387,3 +387,7 @@ body {
 .cadastro-login {
     margin-top: 10px;
 }
+
+.estrela {
+    background-image: url(../img/estrela.png);
+}

@@ -9,7 +9,6 @@
     <title>AquaTech | Avisos</title>
 
     <link rel="stylesheet" href="./../css/dashboards.css">
-    <link rel="stylesheet" href="./../css/estilo.css" />
     <script src="../js/sessao.js"></script>
     <script src="./../js/alerta.js"></script>
 
@@ -59,10 +58,38 @@
                 <div id="alerta">
                 </div>
                 <div class="container">
-                    <h1>Publicar um aviso</h1>
+                    <h1>Publicar uma avaliação</h1>
                     <div class="div-form">
                         <form id="form_postagem" method="post" onsubmit="return publicar()">
                             <label>
+                                <span>Selecione o Filme que você quer avaliar</span>
+                                <select id="select_filme">
+                                    <option value="#" selected disabled>Selecione uma opção</option>
+                                    <option value="">Star Wars Episódio IV: Uma Nova Esperança</option>
+                                    <option value="">Star Wars Episódio V: O Império Contra Ataca</option>
+                                    <option value="">Episódio VI: O Retorno de Jedi</option>
+                                    <option value="">Star Wars Episódio I: A Ameaça Fantasma</option>
+                                    <option value="">Star Wars Episódio II: Ataque dos Clones</option>
+                                    <option value="">Star Wars Episódio III: A Vingança dos Sith</option>
+                                    <option value="">Star Wars Episódio VII: O Despertar da Força</option>
+                                    <option value="">Rogue One: Uma História Star Wars</option>
+                                    <option value="">Star Wars Episódio VIII: Os Últimos Jedi</option>
+                                    <option value="">Han Solo: Uma História Star Wars</option>
+                                    <option value="">Star Wars Episódio IX: A Ascensão Skywalker</option>
+                                </select>
+
+                                <p>de uma nota de 0 a 5: </p>
+                                    <ul class="div_estrelas">
+                                    <li class="estrela preenchida"></li>
+                                    <li class="estrela preenchida"></li>
+                                    <li class="estrela preenchida"></li>
+                                    <li class="estrela preenchida"></li>
+                                    <li class="estrela preenchida"></li>
+                                </ul>
+                                
+                                
+                                
+                                <br>
                                 Título:
                                 <br>
                                 <input name="titulo" id="titulo" maxlength="100" type="text">
@@ -79,7 +106,6 @@
                             <button>Enviar</button>
                         </form>
                     </div>
-                    <h1>Mural de Avisos</h1>
                     <div class="div-results">
                         <div id="feed_container" class="feed-container">
                         </div>
@@ -244,5 +270,7 @@
             finalizarAguardar();
         });
     }
+
+
 
 </script>
