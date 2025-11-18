@@ -20,7 +20,7 @@
 
 <!-- onload="validarSessao(), atualizarFeed()" -->
 
-<body style="background-color: #161618;">
+<body onload="validarSessao(), atualizarFeed()" style="background-color: #161618;">
 
     <div class="janela">
 
@@ -47,6 +47,10 @@
                 <a href="./mural.html">
                     <h3>Avalie o filme</h3>
                 </a>
+            </div>
+
+            <div class="btn-logout" onclick="limparSessao()">
+                <h3>Sair</h3>
             </div>
 
         </div>
