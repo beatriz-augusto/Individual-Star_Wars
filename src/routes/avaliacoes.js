@@ -7,9 +7,9 @@ var avaliacaoController = require("../controllers/avaliacaoController");
 //     avisoController.listar(req, res);
 // });
 
-router.get("/listar/:idUsuario", function (req, res) {
-    avisoController.listarPorUsuario(req, res);
-});
+// router.get("/listar/:idUsuario", function (req, res) {
+//     avisoController.listarPorUsuario(req, res);
+// });
 
 // router.get("/pesquisar/:descricao", function (req, res) {
 //     avisoController.pesquisarDescricao(req, res);
@@ -31,7 +31,7 @@ router.post("/publicar/:idUsuario", function (req, res) {
     avaliacaoController.publicar(req, res);
  });
 
- router.get("/listar/:idUsuario", function (req, res) {
+ router.get("/listar/:fkFilme", function (req, res) {
     avaliacaoController.listarPorFilme(req, res);
 });
 

@@ -14,65 +14,20 @@ function listar(req, res) {
     });
 }
 
-// function listarPorUsuario(req, res) {
-//     var idUsuario = req.params.idUsuario;
-
-//     avaliacaoModel.listarPorUsuario(idUsuario)
-//         .then(
-//             function (resultado) {
-//                 if (resultado.length > 0) {
-//                     res.status(200).json(resultado);
-//                 } else {
-//                     res.status(204).send("Nenhum resultado encontrado!");
-//                 }
-//             }
-//         )
-//         .catch(
-//             function (erro) {
-//                 console.log(erro);
-//                 console.log(
-//                     "Houve um erro ao buscar os avaliacaos: ",
-//                     erro.sqlMessage
-//                 );
-//                 res.status(500).json(erro.sqlMessage);
-//             }
-//         );
-// }
-
-// function pesquisarDescricao(req, res) {
-//     var descricao = req.params.descricao;
-
-//     avaliacaoModel.pesquisarDescricao(descricao)
-//         .then(
-//             function (resultado) {
-//                 if (resultado.length > 0) {
-//                     res.status(200).json(resultado);
-//                 } else {
-//                     res.status(204).send("Nenhum resultado encontrado!");
-//                 }
-//             }
-//         ).catch(
-//             function (erro) {
-//                 console.log(erro);
-//                 console.log("Houve um erro ao buscar os avaliacaos: ", erro.sqlMessage);
-//                 res.status(500).json(erro.sqlMessage);
-//             }
-//         );
-// }
 
 function publicar(req, res) {
-    var titulo = req.body.titulo;
-    var descricao = req.body.descricao;
-    var idUsuario = req.params.idUsuario;
+    var fkFilme = req.body.fkFilme;
+    var comentario = req.body.comentario;
+    var fkUsuario = req.params.fkUsuario;
 
-    if (titulo == undefined) {
-        res.status(400).send("O título está indefinido!");
-    } else if (descricao == undefined) {
+    if (fkFilme == undefined) {
+        res.status(400).send("O Filme está indefinido!");
+    } else if (comentario == undefined) {
         res.status(400).send("A descrição está indefinido!");
-    } else if (idUsuario == undefined) {
+    } else if (fkUsuario == undefined) {
         res.status(403).send("O id do usuário está indefinido!");
     } else {
-        avaliacaoModel.publicar(fkFilme, fkUsuario, Notification, comentario)
+        avaliacaoModel.publicar(fkFilme, fkUsuario, comentario)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -87,26 +42,6 @@ function publicar(req, res) {
             );
     }
 }
-
-// function editar(req, res) {
-//     var novaDescricao = req.body.descricao;
-//     var idavaliacao = req.params.idavaliacao;
-
-//     avaliacaoModel.editar(novaDescricao, idavaliacao)
-//         .then(
-//             function (resultado) {
-//                 res.json(resultado);
-//             }
-//         )
-//         .catch(
-//             function (erro) {
-//                 console.log(erro);
-//                 console.log("Houve um erro ao realizar o post: ", erro.sqlMessage);
-//                 res.status(500).json(erro.sqlMessage);
-//             }
-//         );
-
-// }
 
 function deletar(req, res) {
     var idAvaliacoes = req.params.idAvaliacoes;
@@ -128,9 +63,6 @@ function deletar(req, res) {
 
 module.exports = {
     listar,
-    listarPorUsuario,
-    pesquisarDescricao,
     publicar,
-    editar,
     deletar
 }

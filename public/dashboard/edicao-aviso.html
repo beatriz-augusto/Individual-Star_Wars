@@ -103,7 +103,7 @@
     }
 
     function editar() {
-        fetch(`/avisos/editar/${sessionStorage.getItem("ID_POSTAGEM_EDITANDO")}`, {
+        fetch(`/avaliacao/editar/${sessionStorage.getItem("IdAvaliacoes")}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
