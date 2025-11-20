@@ -117,10 +117,11 @@
 
 
     function entrar() {
-        aguardar();
-
         var emailVar = email_input.value;
         var senhaVar = senha_input.value;
+        aguardar();
+
+        
 
             console.log("FORM LOGIN: ", emailVar);
         console.log("FORM SENHA: ", senhaVar);
@@ -148,7 +149,7 @@
         }).then(function (resposta) {
             console.log("ESTOU NO THEN DO entrar()!")
 
-    
+            if (resposta.ok) {
                 console.log(resposta);
 
 
@@ -165,15 +166,15 @@
 
                 });
 
-            // if {
+            } else {
 
-            //     console.log("Houve um erro ao tentar realizar o login!");
+                console.log("Houve um erro ao tentar realizar o login!");
 
-            //     resposta.text().then(texto => {
-            //         console.error(texto);
-            //         finalizarAguardar(texto);
-            //     });
-            // } 
+                resposta.text().then(texto => {
+                    console.error(texto);
+                    finalizarAguardar(texto);
+                });
+            } 
 
         }).catch(function (erro) {
             console.log(erro);

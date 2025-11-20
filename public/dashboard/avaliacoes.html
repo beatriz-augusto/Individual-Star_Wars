@@ -18,7 +18,7 @@
         rel="stylesheet">
 </head>
 
-<!-- onload="validarSessao(), atualizarFeed()" -->
+
 
 <body onload="validarSessao(), atualizarFeed()" style="background-color: #161618;">
 
@@ -91,7 +91,10 @@
                                     <li class="estrela preenchida"></li>
                                 </ul>
                                 
-                                
+                                <br>
+                                Nota:
+                                <br>
+                                <input name="nota" id="nota" maxlength="100" type="text">
                                 
                                 <br>
                                 Título:
@@ -139,10 +142,12 @@
 
         var corpo = {
             titulo: form_postagem.titulo.value,
-            descricao: form_postagem.descricao.value
+            descricao: form_postagem.descricao.value,
+            nota: form_postagem.nota.value
+    
         }
 
-        fetch(`/avisos/publicar/${idUsuario}`, {
+        fetch(`/avaliacoes/publicar/${idUsuario}`, {
             method: "post",
             headers: {
                 "Content-Type": "application/json"
@@ -171,17 +176,17 @@
 
     }
 
-    function editar(idAviso) {
-        sessionStorage.ID_POSTAGEM_EDITANDO = idAviso;
-        console.log("cliquei em editar - " + idAviso);
-        window.alert("Você será redirecionado à página de edição do aviso de id número: " + idAviso);
+    function editar(idAvaliacoes) {
+        sessionStorage.ID_POSTAGEM_EDITANDO = idAvaliacoes;
+        console.log("cliquei em editar - " + idAvaliacoes);
+        window.alert("Você será redirecionado à página de edição do aviso de id número: " + idAvaliacoes);
         window.location = "/dashboard/edicao-aviso.html"
 
     }
 
-    function deletar(idAviso) {
-        console.log("Criar função de apagar post escolhido - ID" + idAviso);
-        fetch(`/avisos/deletar/${idAviso}`, {
+    function deletar(idAvaliacoes) {
+        console.log("Criar função de apagar post escolhido - ID" + idAvaliacoes);
+        fetch(`/avisos/deletar/${idAvaliacoes}`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json"
@@ -224,6 +229,7 @@
                         var divPublicacao = document.createElement("div");
                         var spanID = document.createElement("span");
                         var spanTitulo = document.createElement("span");
+                        var spanNota = document.createElement("span");
                         var spanNome = document.createElement("span");
                         var divDescricao = document.createElement("div");
                         var divButtons = document.createElement("div");
@@ -231,32 +237,35 @@
                         var btnDeletar = document.createElement("button");
 
 
-                        spanID.innerHTML = "ID: <b>" + publicacao.idAviso + "</b>";
+                        spanID.innerHTML = "ID: <b>" + publicacao.idAvaliacoes + "</b>";
                         spanTitulo.innerHTML = "Título: <b>" + publicacao.titulo + "</b>";
+                        spanNota.innerHTML = "Título: <b>" + publicacao.nota + "</b>";
                         spanNome.innerHTML = "Autor: <b>" + publicacao.nome + "</b>";
                         divDescricao.innerHTML = "Descrição: <b>" + publicacao.descricao + "</b>";
                         btnEditar.innerHTML = "Editar";
                         btnDeletar.innerHTML = "Deletar";
 
                         divPublicacao.className = "publicacao";
-                        spanTitulo.id = "inputNumero" + publicacao.idAviso;
+                        spanTitulo.id = "inputNumero" + publicacao.idAvaliacoes;
                         spanNome.className = "publicacao-nome";
                         spanTitulo.className = "publicacao-titulo";
+                        spanNota.className = "publicacao-nota";
                         divDescricao.className = "publicacao-descricao";
 
                         divButtons.className = "div-buttons"
 
                         btnEditar.className = "publicacao-btn-editar"
-                        btnEditar.id = "btnEditar" + publicacao.idAviso;
-                        btnEditar.setAttribute("onclick", `editar(${publicacao.idAviso})`);
+                        btnEditar.id = "btnEditar" + publicacao.idAvaliacoes;
+                        btnEditar.setAttribute("onclick", `editar(${publicacao.idAvaliacoes})`);
 
                         btnDeletar.className = "publicacao-btn-editar"
-                        btnDeletar.id = "btnDeletar" + publicacao.idAviso;
-                        btnDeletar.setAttribute("onclick", `deletar(${publicacao.idAviso})`);
+                        btnDeletar.id = "btnDeletar" + publicacao.idAvaliacoes;
+                        btnDeletar.setAttribute("onclick", `deletar(${publicacao.idAvaliacoes})`);
 
                         divPublicacao.appendChild(spanID);
                         divPublicacao.appendChild(spanNome);
                         divPublicacao.appendChild(spanTitulo);
+                        divPublicacao.appendChild(spanNota);
                         divPublicacao.appendChild(divDescricao);
                         divPublicacao.appendChild(divButtons);
                         divButtons.appendChild(btnEditar);
@@ -274,7 +283,5 @@
             finalizarAguardar();
         });
     }
-
-
 
 </script>

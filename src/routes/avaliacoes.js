@@ -1,42 +1,30 @@
 var express = require("express");
 var router = express.Router();
 
-var avaliacaoController = require("../controllers/avaliacaoController");
+var avaliacoesController = require("../controllers/avaliacaoController");
 
-// router.get("/listar", function (req, res) {
-//     avisoController.listar(req, res);
-// });
+router.get("/listar", function (req, res) {
+    avaliacoesController.listar(req, res);
+});
 
-// router.get("/listar/:idUsuario", function (req, res) {
-//     avisoController.listarPorUsuario(req, res);
-// });
+router.get("/listar/:idUsuario", function (req, res) {
+    avaliacoesController.listarPorUsuario(req, res);
+});
 
-// router.get("/pesquisar/:descricao", function (req, res) {
-//     avisoController.pesquisarDescricao(req, res);
-// });
-
-// router.post("/publicar/:idUsuario", function (req, res) {
-//     avisoController.publicar(req, res);
-// });
-
-// router.put("/editar/:idAviso", function (req, res) {
-//     avisoController.editar(req, res);
-// });
-
-// router.delete("/deletar/:idAviso", function (req, res) {
-//     avisoController.deletar(req, res);
-// });
+router.get("/pesquisar/:comentario", function (req, res) {
+    avaliacoesController.pesquisarComentario(req, res);
+});
 
 router.post("/publicar/:idUsuario", function (req, res) {
-    avaliacaoController.publicar(req, res);
- });
+    avaliacoesController.publicar(req, res);
+});
 
- router.get("/listar/:fkFilme", function (req, res) {
-    avaliacaoController.listarPorFilme(req, res);
+router.put("/editar/:idAvaliacoes", function (req, res) {
+    avaliacoesController.editar(req, res);
 });
 
 router.delete("/deletar/:idAvaliacoes", function (req, res) {
-    avaliacaoController.deletar(req, res);
- });
+    avaliacoesController.deletar(req, res);
+});
 
 module.exports = router;
