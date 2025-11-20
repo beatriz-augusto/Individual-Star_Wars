@@ -9,6 +9,7 @@ router.post("/cadastrar", function (req, res) {
 })
 
 router.post("/autenticar", function (req, res) {
+    console.log("entrei nas rotas")
     usuarioController.autenticar(req, res);
 });
 

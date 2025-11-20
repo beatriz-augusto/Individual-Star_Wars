@@ -44,42 +44,42 @@
 
     <div class="login">
         <div class="ocupacidade">
-             <div class="alerta_erro">
-            <div class="card_erro" id="cardErro">
-                <span id="mensagem_erro"></span>
+            <div class="alerta_erro">
+                <div class="card_erro" id="cardErro">
+                    <span id="mensagem_erro"></span>
+                </div>
             </div>
-        </div>
-        <div class="container-login">
-            <div class="card-login">
-                <h2>Bem vindo de volta!</h2>
-                <div class="formulario">
-                    <div class="campo">
-                        <span>E-mail:</span>
-                        <input id="email_input" type="text" placeholder="Login">
-                    </div>
-                    <div class="campo">
-                        <span>Senha:</span>
-                        <input id="senha_input" type="password" placeholder="******">
+            <div class="container-login">
+                <div class="card-login">
+                    <h2>Bem vindo de volta!</h2>
+                    <div class="formulario">
+                        <div class="campo">
+                            <span>E-mail:</span>
+                            <input id="email_input" type="text" placeholder="Login">
+                        </div>
+                        <div class="campo">
+                            <span>Senha:</span>
+                            <input id="senha_input" type="password" placeholder="******">
+                        </div>
+
+
                     </div>
                     
-                  
+                    <div id="div_aguardar" class="loading-div">
+                        <img src="./img/loading-load.gif" id="loading-gif">
+                    </div>
+
+                    <div id="div_erros_login"></div>
                 </div>
 
-                <div id="div_aguardar" class="loading-div">
-                    <img src="./img/loading-load.gif" id="loading-gif">
-                </div>
-
-                <div id="div_erros_login"></div>
+                <button class="botao" onclick="entrar()">Entrar</button>
             </div>
+        </div>
 
-                    <button class="botao" onclick="entrar()">Entrar</button>
-        </div>
-        </div>
-       
     </div>
 
     <!--footer inicio-->
-     <div class="footer">
+    <div class="footer">
         <h4>Diário Jedi</h4>
         <h5>Que a força esteja com você!</h5>
         <div id="footer-links">
@@ -103,8 +103,9 @@
         </div>
         <div class="decoracao-footer"></div>
         <div class="texto-footer">
-            <p>Copyright © 2025. Diário Jedi é um site criado por fã. Star Wars, seus logotipos, personagens e propriedade
-            intelectual são da Lucasfilm.</p>
+            <p>Copyright © 2025. Diário Jedi é um site criado por fã. Star Wars, seus logotipos, personagens e
+                propriedade
+                intelectual são da Lucasfilm.</p>
         </div>
     </div>
     <!--footer fim-->
@@ -121,26 +122,37 @@
         var senhaVar = senha_input.value;
         aguardar();
 
-        
-
-            console.log("FORM LOGIN: ", emailVar);
-        console.log("FORM SENHA: ", senhaVar);
 
         if (emailVar == "" || senhaVar == "") {
             cardErro.style.display = "block"
-            mensagem_erro.innerHTML = `(Mensagem de erro para todos os campos em branco)`;
+            mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
             finalizarAguardar();
-            console.log(`primeiro if`)
             return false;
         }
         else {
             console.log(`primeiro else`)
-            // setInterval(sumirMensagem, 5000)
-            fetch("/usuarios/autenticar", {
+
+            setInterval(sumirMensagem, 5000)
+        }
+
+        // if (emailVar == "" || senhaVar == "") {
+        //     cardErro.style.display = "block"
+        //     mensagem_erro.innerHTML = `(Mensagem de erro para todos os campos em branco)`;
+        //     finalizarAguardar();
+        //     console.log(`primeiro if`)
+        //     return false;
+        // }
+
+
+        // else {
+
+        console.log("FORM LOGIN: ", emailVar);
+        console.log("FORM SENHA: ", senhaVar);
+        
+        fetch("/usuarios/autenticar", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
-                
             },
             body: JSON.stringify({
                 emailServer: emailVar,
@@ -158,7 +170,7 @@
                     console.log(JSON.stringify(json));
                     sessionStorage.EMAIL_USUARIO = json.email;
                     sessionStorage.NOME_USUARIO = json.nome;
-                    
+
 
                     setTimeout(function () {
                         window.location = "index.html";
@@ -174,7 +186,7 @@
                     console.error(texto);
                     finalizarAguardar(texto);
                 });
-            } 
+            }
 
         }).catch(function (erro) {
             console.log(erro);
@@ -182,8 +194,7 @@
 
         return false;
     }
-}
-        
+
 
     function sumirMensagem() {
         cardErro.style.display = "none"
