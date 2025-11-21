@@ -390,15 +390,15 @@ body {
 
 .div_card-esquerda {
     width: 100%;
-    height: 800px;
+    height: 1000px;
     background-color: #000;
     display: flex;
     align-items: center;
 }
 
 .div-img_filmes {
-    width: 1200px;
-    height: 600px;
+    width: 600px;
+    height: 900px;
     margin-left: 60px;
 }
 
@@ -406,3 +406,28 @@ body {
     width: 100%;
     height: 100%;
 }
+.texto-filmes {
+    width: 1200px;
+    height: 600px;
+    margin-left: 90px;
+    margin-top: 20px;
+    margin-right: 90px;
+}
+
+.texto-filmes p{
+    color: #8b8d8e;
+    font-size: 20px;
+}
+
+.texto-filmes h2 {
+    color: #fff;
+    font-size: 40px;
+    margin-top: 10px;
+}
+
+.texto-filmes span {
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 900%;
+    
+} 

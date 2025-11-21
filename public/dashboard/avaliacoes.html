@@ -19,8 +19,8 @@
 </head>
 
 
-<!--  -->
-<body  onload="validarSessao(), atualizarFeed()" style="background-color: #161618;">
+<!-- onload="validarSessao(), atualizarFeed()" -->
+<body   style="background-color: #161618;">
 
     <div class="janela">
 
@@ -82,14 +82,14 @@
                                     <option value="">Star Wars Episódio IX: A Ascensão Skywalker</option>
                                 </select>
 
-                                <!-- <p>de uma nota de 0 a 5: </p>
+                                <p>de uma nota de 0 a 5: </p>
                                     <ul class="div_estrelas">
-                                    <li id="1" class="estrela preenchida" onclick="atualizarEstrela(1)"></li>
-                                    <li id="2" class="estrela preenchida" onclick="atualizarEstrela(2)"></li>
-                                    <li id="3" class="estrela preenchida" onclick="atualizarEstrela(3)"></li>
-                                    <li id="4" class="estrela preenchida" onclick="atualizarEstrela(4)"></li>
-                                    <li id="5" class="estrela preenchida" onclick="atualizarEstrela(5)"></li>
-                                </ul> -->
+                                    <li class="estrela preenchida" id="estrela1" onclick="atualizarEstrela()"></li>
+                                    <li class="estrela preenchida" id="estrela2" onclick="atualizarEstrela()"></li>
+                                    <li class="estrela preenchida" id="estrela3" onclick="atualizarEstrela()"></li>
+                                    <li class="estrela preenchida" id="estrela4" onclick="atualizarEstrela()"></li>
+                                    <li class="estrela preenchida" id="estrela5" onclick="atualizarEstrela()"></li>
+                                </ul>
 
                                 <!-- this  -->
                                 
@@ -137,7 +137,7 @@
     
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
-    // function atualizarEstrela(estrelas){
+    // function atualizarEstrela(estrela){
     //     var estrelaSelecionada = Number(estrela.id);
     //     var estrela = document.querySelectorAll('.estrela')
 
@@ -152,6 +152,29 @@
     //         }   
     //     }
     // }
+
+
+
+
+
+   var listaEstrelas = [
+    document.getElementById('estrela1'),
+    document.getElementById('estrela2'),
+    document.getElementById('estrela3'),
+    document.getElementById('estrela4'),
+    document.getElementById('estrela5')
+   ];
+
+    function atualizarEstrela(){
+
+        for (var i = listaEstrelas.length - 1; i >= 0; i--){
+            listaEstrelas[i].classList.remove("preenchida");
+        }
+
+        for (var i = 0; i < listaEstrelas.length; i++){
+            listaEstrelas[i].classList.add("preenchida");
+        }
+    }
 
     function limparFormulario() {
         document.getElementById("form_postagem").reset();
