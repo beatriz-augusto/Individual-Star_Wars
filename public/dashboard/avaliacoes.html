@@ -19,8 +19,8 @@
 </head>
 
 
-<!-- onload="validarSessao(), atualizarFeed()" -->
-<body  style="background-color: #161618;">
+<!--  -->
+<body  onload="validarSessao(), atualizarFeed()" style="background-color: #161618;">
 
     <div class="janela">
 
@@ -82,14 +82,16 @@
                                     <option value="">Star Wars Episódio IX: A Ascensão Skywalker</option>
                                 </select>
 
-                                <p>de uma nota de 0 a 5: </p>
+                                <!-- <p>de uma nota de 0 a 5: </p>
                                     <ul class="div_estrelas">
-                                    <li class="estrela preenchida"></li>
-                                    <li class="estrela preenchida"></li>
-                                    <li class="estrela preenchida"></li>
-                                    <li class="estrela preenchida"></li>
-                                    <li class="estrela preenchida"></li>
-                                </ul>
+                                    <li id="1" class="estrela preenchida" onclick="atualizarEstrela(1)"></li>
+                                    <li id="2" class="estrela preenchida" onclick="atualizarEstrela(2)"></li>
+                                    <li id="3" class="estrela preenchida" onclick="atualizarEstrela(3)"></li>
+                                    <li id="4" class="estrela preenchida" onclick="atualizarEstrela(4)"></li>
+                                    <li id="5" class="estrela preenchida" onclick="atualizarEstrela(5)"></li>
+                                </ul> -->
+
+                                <!-- this  -->
                                 
                                 <br>
                                 Nota:
@@ -113,6 +115,8 @@
                             <button>Enviar</button>
                         </form>
                     </div>
+
+                    <div id="div_aguardar">carregando...</div>
                     <div class="div-results">
                         <div id="feed_container" class="feed-container">
                         </div>
@@ -133,12 +137,34 @@
     
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
+    // function atualizarEstrela(estrelas){
+    //     var estrelaSelecionada = Number(estrela.id);
+    //     var estrela = document.querySelectorAll('.estrela')
+
+    //     for (var i = 0; i < estrela.length; i++){
+            
+    //         var posicao = estrela[i].id;
+
+    //         if(posicao <= estrelaSelecionada){
+    //             estrela[i].style.preenchida = `display: block`
+    //         } else {
+    //             estrela[i].style.preenchida = `display: none`
+    //         }   
+    //     }
+    // }
+
     function limparFormulario() {
         document.getElementById("form_postagem").reset();
     }
 
     function publicar() {
         var idUsuario = sessionStorage.ID_USUARIO;
+        console.log(`id_usuario na session =`, idUsuario)
+
+        if (!idUsuario) {
+        alert("ID do usuário não encontrado na sessão. Você fez login antes de entrar nessa página?");
+        return false;
+    }
 
         var corpo = {
             titulo: form_postagem.titulo.value,
@@ -195,7 +221,7 @@
 
             if (resposta.ok) {
                 window.alert("Post deletado com sucesso pelo usuario de email: " + sessionStorage.getItem("EMAIL_USUARIO") + "!");
-                window.location = "/dashboard/mural.html"
+                window.location = "/dashboard/avaliacoes.html"
             } else if (resposta.status == 404) {
                 window.alert("Deu 404!");
             } else {
@@ -207,7 +233,7 @@
     }
 
     function atualizarFeed() {
-        fetch("/avisos/listar").then(function (resposta) {
+        fetch("/avaliacoes/listar").then(function (resposta) {
             if (resposta.ok) {
                 if (resposta.status == 204) {
                     var feed = document.getElementById("feed_container");
