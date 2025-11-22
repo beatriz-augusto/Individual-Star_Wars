@@ -84,11 +84,11 @@
 
                                 <p>de uma nota de 0 a 5: </p>
                                     <ul class="div_estrelas">
-                                    <li class="estrela preenchida" id="estrela1" onclick="atualizarEstrela()"></li>
-                                    <li class="estrela preenchida" id="estrela2" onclick="atualizarEstrela()"></li>
-                                    <li class="estrela preenchida" id="estrela3" onclick="atualizarEstrela()"></li>
-                                    <li class="estrela preenchida" id="estrela4" onclick="atualizarEstrela()"></li>
-                                    <li class="estrela preenchida" id="estrela5" onclick="atualizarEstrela()"></li>
+                                    <li class="estrela preenchida" id="estrela1" value="0" onclick="atualizarEstrela(1)"></li>
+                                    <li class="estrela preenchida" id="estrela2" value="1" onclick="atualizarEstrela(2)"></li>
+                                    <li class="estrela preenchida" id="estrela3" value="2" onclick="atualizarEstrela(3)"></li>
+                                    <li class="estrela preenchida" id="estrela4" value="3" onclick="atualizarEstrela(4)"></li>
+                                    <li class="estrela preenchida" id="estrela5" value="4" onclick="atualizarEstrela(5)"></li>
                                 </ul>
 
                                 <!-- this  -->
@@ -137,24 +137,6 @@
     
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
-    // function atualizarEstrela(estrela){
-    //     var estrelaSelecionada = Number(estrela.id);
-    //     var estrela = document.querySelectorAll('.estrela')
-
-    //     for (var i = 0; i < estrela.length; i++){
-            
-    //         var posicao = estrela[i].id;
-
-    //         if(posicao <= estrelaSelecionada){
-    //             estrela[i].style.preenchida = `display: block`
-    //         } else {
-    //             estrela[i].style.preenchida = `display: none`
-    //         }   
-    //     }
-    // }
-
-
-
 
 
    var listaEstrelas = [
@@ -165,16 +147,17 @@
     document.getElementById('estrela5')
    ];
 
-    function atualizarEstrela(){
+    function atualizarEstrela(index){
 
-        for (var i = listaEstrelas.length - 1; i >= 0; i--){
+        for (var i = index - 1; i > 0; i--){
             listaEstrelas[i].classList.remove("preenchida");
         }
 
-        for (var i = 0; i < listaEstrelas.length; i++){
+        for (var i = 0; i < index; i++){
             listaEstrelas[i].classList.add("preenchida");
         }
     }
+
 
     function limparFormulario() {
         document.getElementById("form_postagem").reset();
