@@ -87,10 +87,10 @@ from avaliacoes as a
     return database.executar(instrucaoSql);
 }
 
-function publicar(idAvaliacoes, titulo, comentario, idUsuario, nota, fkFilmes) {
+function publicar(idAvaliacoes, titulo, comentario, fkUsuario, nota, fkFilmes) {
     console.log("ACESSEI O AVALIACOES MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function publicar(): ", titulo, comentario, idUsuario, fkFilmes);
     var instrucaoSql = `
-        INSERT INTO Avaliacoes (idAvaliacoes, titulo, comentario, idUsuario, nota, fkFilmes) VALUES ('${idAvaliacoes}','${titulo}', '${comentario}', ${idUsuario}, '${nota}', '${fkFilmes}');
+        INSERT INTO Avaliacoes (idAvaliacoes, titulo, comentario, fkUsuario, nota, fkFilmes) VALUES ('${idAvaliacoes}','${titulo}', '${comentario}', ${fkUsuario}, '${nota}', '${fkFilmes}');
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);

@@ -448,7 +448,7 @@ canvas {
     list-style: none;
 }
 
-.estrela .preenchida {
+.preenchida {
   background-image: url(../img/estrela-cheia.png);
   background-size: cover;
     width: 50px;

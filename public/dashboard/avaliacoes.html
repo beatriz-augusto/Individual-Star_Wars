@@ -84,19 +84,16 @@
 
                                 <p>de uma nota de 0 a 5: </p>
                                     <ul class="div_estrelas">
-                                    <li class="estrela preenchida" id="estrela1" value="0" onclick="atualizarEstrela(1)"></li>
-                                    <li class="estrela preenchida" id="estrela2" value="1" onclick="atualizarEstrela(2)"></li>
-                                    <li class="estrela preenchida" id="estrela3" value="2" onclick="atualizarEstrela(3)"></li>
-                                    <li class="estrela preenchida" id="estrela4" value="3" onclick="atualizarEstrela(4)"></li>
-                                    <li class="estrela preenchida" id="estrela5" value="4" onclick="atualizarEstrela(5)"></li>
+                                    <li class="estrela" id="estrela1" value="0" onclick="atualizarEstrela(1)"></li>
+                                    <li class="estrela" id="estrela2" value="1" onclick="atualizarEstrela(2)"></li>
+                                    <li class="estrela" id="estrela3" value="2" onclick="atualizarEstrela(3)"></li>
+                                    <li class="estrela" id="estrela4" value="3" onclick="atualizarEstrela(4)"></li>
+                                    <li class="estrela" id="estrela5" value="4" onclick="atualizarEstrela(5)"></li>
                                 </ul>
 
+
+
                                 <!-- this  -->
-                                
-                                <br>
-                                Nota:
-                                <br>
-                                <input name="nota" id="nota" maxlength="100" type="text">
                                 
                                 <br>
                                 Título:
@@ -138,6 +135,9 @@
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
 
+    var notaSelecionada = 0;
+
+
 
    var listaEstrelas = [
     document.getElementById('estrela1'),
@@ -148,8 +148,9 @@
    ];
 
     function atualizarEstrela(index){
+        notaSelecionada = index;
 
-        for (var i = index - 1; i > 0; i--){
+        for (var i = 0; i < listaEstrelas.length; i++){
             listaEstrelas[i].classList.remove("preenchida");
         }
 
@@ -175,9 +176,10 @@
         var corpo = {
             titulo: form_postagem.titulo.value,
             descricao: form_postagem.descricao.value,
-            nota: form_postagem.nota.value
-    
+            nota: notaSelecionada,
+            fkFilme: select_filme.value
         }
+        console.log("Corpo que vou enviar:", corpo);
 
         fetch(`/avaliacoes/publicar/${idUsuario}`, {
             method: "post",
