@@ -66,11 +66,18 @@ avaliacaoModel.pesquisarComentario(descricao)
 function publicar(req, res) {
     var titulo = req.body.titulo;
     var descricao = req.body.descricao;
-    var idUsuario = req.params.idUsuario;
+    var idUsuario = req.body.idUsuario;
     var nota = req.body.nota;
     var fkFilmes = req.body.fkFilme;
-    var idAvaliacoes = Math.floor(Math.random() * 999) + 1;
-
+    var idAvaliacoes = Number(Math.floor(Math.random() * 999) + 1);
+    console.log("Controller avaliações: " 
+        + titulo + '/'+
+        + descricao + '/'+
+        + idUsuario + '/'+
+        + nota + '/'+
+        + fkFilmes + '/'+
+        + idAvaliacoes + '/'
+    )
     if (titulo == undefined) {
         res.status(400).send("O título está indefinido!");
     } else if (descricao == undefined) {
@@ -83,7 +90,7 @@ function publicar(req, res) {
         res.status(403).send("O filme está indefinido!");
     } else {
         var avaliacaoModel = require("../models/avaliacaoModel");
-avaliacaoModel.publicar(titulo, descricao, idUsuario, nota, fkFilmes, idAvaliacoes)
+avaliacaoModel.publicar(idAvaliacoes, titulo, descricao, idUsuario, nota, fkFilmes)
             .then(
                 function (resultado) {
                     res.json(resultado);

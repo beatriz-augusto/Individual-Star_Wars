@@ -15,7 +15,7 @@ router.get("/pesquisar/:comentario", function (req, res) {
     avaliacoesController.pesquisarComentario(req, res);
 });
 
-router.post("/publicar/:idUsuario", function (req, res) {
+router.post("/publicar", function (req, res) {
     avaliacoesController.publicar(req, res);
 });
 

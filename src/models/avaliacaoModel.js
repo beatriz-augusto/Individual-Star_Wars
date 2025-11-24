@@ -88,7 +88,7 @@ from avaliacoes as a
 }
 
 function publicar(idAvaliacoes, titulo, comentario, fkUsuario, nota, fkFilmes) {
-    console.log("ACESSEI O AVALIACOES MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function publicar(): ", titulo, comentario, idUsuario, fkFilmes);
+    console.log("ACESSEI O AVALIACOES MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function publicar(): ", titulo, comentario, fkUsuario, fkFilmes);
     var instrucaoSql = `
         INSERT INTO Avaliacoes (idAvaliacoes, titulo, comentario, fkUsuario, nota, fkFilmes) VALUES ('${idAvaliacoes}','${titulo}', '${comentario}', ${fkUsuario}, '${nota}', '${fkFilmes}');
     `;

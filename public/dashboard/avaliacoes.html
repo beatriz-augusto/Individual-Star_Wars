@@ -69,17 +69,17 @@
                                 <span>Selecione o Filme que você quer avaliar</span>
                                 <select id="select_filme">
                                     <option value="#" selected disabled>Selecione uma opção</option>
-                                    <option value="">Star Wars Episódio IV: Uma Nova Esperança</option>
-                                    <option value="">Star Wars Episódio V: O Império Contra Ataca</option>
-                                    <option value="">Episódio VI: O Retorno de Jedi</option>
-                                    <option value="">Star Wars Episódio I: A Ameaça Fantasma</option>
-                                    <option value="">Star Wars Episódio II: Ataque dos Clones</option>
-                                    <option value="">Star Wars Episódio III: A Vingança dos Sith</option>
-                                    <option value="">Star Wars Episódio VII: O Despertar da Força</option>
-                                    <option value="">Rogue One: Uma História Star Wars</option>
-                                    <option value="">Star Wars Episódio VIII: Os Últimos Jedi</option>
-                                    <option value="">Han Solo: Uma História Star Wars</option>
-                                    <option value="">Star Wars Episódio IX: A Ascensão Skywalker</option>
+                                    <option value="1">Star Wars Episódio IV: Uma Nova Esperança</option>
+                                    <option value="2">Star Wars Episódio V: O Império Contra Ataca</option>
+                                    <option value="3">Episódio VI: O Retorno de Jedi</option>
+                                    <option value="4">Star Wars Episódio I: A Ameaça Fantasma</option>
+                                    <option value="5">Star Wars Episódio II: Ataque dos Clones</option>
+                                    <option value="6">Star Wars Episódio III: A Vingança dos Sith</option>
+                                    <option value="7">Star Wars Episódio VII: O Despertar da Força</option>
+                                    <option value="8">Rogue One: Uma História Star Wars</option>
+                                    <option value="9">Star Wars Episódio VIII: Os Últimos Jedi</option>
+                                    <option value="10">Han Solo: Uma História Star Wars</option>
+                                    <option value="11">Star Wars Episódio IX: A Ascensão Skywalker</option>
                                 </select>
 
                                 <p>de uma nota de 0 a 5: </p>
@@ -105,11 +105,12 @@
                             <label>
                                 Descrição (máximo de 250 caracteres):
                                 <br>
-                                <textarea name="descricao" id="textarea_descricao" maxlength="250" rows="5"></textarea>
+                                <textarea name="descricao" id="textarea_descricao" type="text" maxlength="250" rows="5"></textarea>
                             </label>
                             <br>
                             <br>
                             <button>Enviar</button>
+                            <button onclick="atualizarFeed()">atualizarFeed</button>
                         </form>
                     </div>
 
@@ -173,27 +174,39 @@
         return false;
     }
 
+    var idUsuario = Number(sessionStorage.ID_USUARIO)
         var corpo = {
             titulo: form_postagem.titulo.value,
-            descricao: form_postagem.descricao.value,
+            descricao: textarea_descricao.value,
             nota: notaSelecionada,
-            fkFilme: select_filme.value
+            fkFilme: select_filme.value,
+            idusuario: idUsuario
         }
         console.log("Corpo que vou enviar:", corpo);
-
-        fetch(`/avaliacoes/publicar/${idUsuario}`, {
+        var titulo =  form_postagem.titulo.value
+            var descricao =  form_postagem.descricao.value
+            var nota =  notaSelecionada
+            var fkFilme =  select_filme.value
+            
+        fetch(`/avaliacoes/publicar`, {
             method: "post",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(corpo)
+            body: JSON.stringify( {
+                titulo:  titulo,
+                descricao:  descricao,
+                nota:  nota,
+                fkFilme:  fkFilme,
+                idUsuario: idUsuario
+            })
         }).then(function (resposta) {
 
             console.log("resposta: ", resposta);
 
             if (resposta.ok) {
                 window.alert("Post realizado com sucesso pelo usuario de ID: " + idUsuario + "!");
-                window.location = "/dashboard/mural.html";
+                // window.location = "/dashboard/mural.html";
                 limparFormulario();
                 finalizarAguardar();
             } else if (resposta.status == 404) {
@@ -261,7 +274,7 @@
 
                         // criando e manipulando elementos do HTML via JavaScript
                         var divPublicacao = document.createElement("div");
-                        var spanID = document.createElement("span");
+                        // var spanID = document.createElement("span");
                         var spanTitulo = document.createElement("span");
                         var spanNota = document.createElement("span");
                         var spanNome = document.createElement("span");
@@ -271,9 +284,9 @@
                         var btnDeletar = document.createElement("button");
 
 
-                        spanID.innerHTML = "ID: <b>" + publicacao.idAvaliacoes + "</b>";
+                        // spanID.innerHTML = "ID: <b>" + publicacao.idAvaliacoes + "</b>";
                         spanTitulo.innerHTML = "Título: <b>" + publicacao.titulo + "</b>";
-                        spanNota.innerHTML = "Título: <b>" + publicacao.nota + "</b>";
+                        spanNota.innerHTML = "Nota: <b>" + publicacao.nota + "</b>";
                         spanNome.innerHTML = "Autor: <b>" + publicacao.nome + "</b>";
                         divDescricao.innerHTML = "Descrição: <b>" + publicacao.descricao + "</b>";
                         btnEditar.innerHTML = "Editar";
@@ -296,7 +309,7 @@
                         btnDeletar.id = "btnDeletar" + publicacao.idAvaliacoes;
                         btnDeletar.setAttribute("onclick", `deletar(${publicacao.idAvaliacoes})`);
 
-                        divPublicacao.appendChild(spanID);
+                        // divPublicacao.appendChild(spanID);
                         divPublicacao.appendChild(spanNome);
                         divPublicacao.appendChild(spanTitulo);
                         divPublicacao.appendChild(spanNota);
