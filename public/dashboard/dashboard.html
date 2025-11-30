@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AquaTech | Dashboards</title>
 
-    
+
     <link rel="stylesheet" href="./../css/dashboards.css">
     <link rel="stylesheet" href="./../css/estilo.css" />
     <script src="../js/sessao.js"></script>
@@ -28,7 +28,8 @@
 
 
 <!-- onload=" atualizarFeed()"  -->
-<body >
+
+<body>
 
     <div class="janela">
         <div class="header-left">
@@ -61,17 +62,86 @@
         </div>
 
         <div class="dash">
-            <div id="alerta">
+            <!-- <div id="alerta">
             </div>
 
             <div class="btns-dash" id="btnAquario">
-                <!-- O gráfico é chamado de acordo com o id (fk_aquario) do banco  -->
+                O gráfico é chamado de acordo com o id (fk_aquario) do banco  
             </div>
+
             <div id="graficos">
+            </div> -->
+            <div class="bloco-titulo">
+            <div class="titulo-dash">
+                <h2>Dashboard</h2>
+            </div>
+            <div class="selecao-filmes" >
+                <select name="" id="selecionefilme" onchange="mudarCor()">
+                    <option value="#" selected disabled>Selecione uma opção</option>
+                    <option value="1">Star Wars Episódio IV: Uma Nova Esperança</option>
+                    <option value="2">Star Wars Episódio V: O Império Contra Ataca</option>
+                    <option value="3">Episódio VI: O Retorno de Jedi</option>
+                    <option value="4">Star Wars Episódio I: A Ameaça Fantasma</option>
+                    <option value="5">Star Wars Episódio II: Ataque dos Clones</option>
+                    <option value="6">Star Wars Episódio III: A Vingança dos Sith</option>
+                    <option value="7">Star Wars Episódio VII: O Despertar da Força</option>
+                    <option value="8">Rogue One: Uma História Star Wars</option>
+                    <option value="9">Star Wars Episódio VIII: Os Últimos Jedi</option>
+                    <option value="10">Han Solo: Uma História Star Wars</option>
+                    <option value="11">Star Wars Episódio IX: A Ascensão Skywalker</option>
+                </select>
+            </div>
+            </div>
+
+
+            <div class="kpis">
+                <div class="kpi-dashInicio">
+                    <div class="bloco-cima">
+                        <div class="bloco-kpi">
+                            <div class="img-kpi"><img src="../img/estrela-dash.png" alt=""></div>
+                        </div>
+                        <div class="texto-kpi">
+                            <h3>Quantidade votos</h3>
+                        </div>
+                    </div>
+                    <div class="dinamico-baixo"></div>
+                </div>
+            
+
+            <div class="kpi-dashInicio">
+                <div class="kpi-dashInicio">
+                    <div class="bloco-cima">
+                        <div class="bloco-kpi">
+                            <div class="img-kpi"><img src="../img/qntVotos-dash.png" alt=""></div>
+                        </div>
+                        <div class="texto-kpi">
+                            <h3>Média Geral</h3>
+                        </div>
+                    </div>
+                    <div class="dinamico-baixo"></div>
+                </div>
+            </div>
+
+            <div class="kp1-dashInicio">
+                <div class="kpi-dashInicio">
+                    <div class="bloco-cima">
+                        <div class="bloco-kpi">
+                            <div class="img-kpi"><img src="../img/mlhrNota-dash.png" alt=""></div>
+                        </div>
+                        <div class="texto-kpi">
+                            <h3>Filme com maior nota</h3>
+                        </div>
+                    </div>
+                    <div class="dinamico-baixo"></div>
+                </div>
+            </div>
+
             </div>
         </div>
-    </div>
 
+        <div class="graficos">
+
+        </div>
 
 </body>
 
@@ -83,6 +153,17 @@
     let proximaAtualizacao;
 
     window.onload = exibirAquariosDoUsuario();
+
+    // mudarCor()
+    // function mudarCor() {
+    //     var filmesSelecao = document.getElementById("selecionefilme");
+
+    //     if(filmesSelecao.value == '#'){
+    //         filmesSelecao.classList.add('principal');
+    //     } else {
+    //         filmesSelecao.classList.remove('principal');
+    //     }
+    // }
 
     function exibirAquariosDoUsuario() {
         var aquarios = JSON.parse(sessionStorage.AQUARIOS);
