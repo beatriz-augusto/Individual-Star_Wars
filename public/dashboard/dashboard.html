@@ -95,7 +95,7 @@
 
 
             <div class="kpis">
-                <div class="kpi-dashInicio">
+                <div class="kpi-dashInicio-amarelo">
                     <div class="bloco-cima">
                         <div class="bloco-kpi">
                             <div class="img-kpi"><img src="../img/estrela-dash.png" alt=""></div>
@@ -108,8 +108,8 @@
                 </div>
             
 
-            <div class="kpi-dashInicio">
-                <div class="kpi-dashInicio">
+           
+                <div class="kpi-dashInicio-roxo">
                     <div class="bloco-cima">
                         <div class="bloco-kpi">
                             <div class="img-kpi"><img src="../img/qntVotos-dash.png" alt=""></div>
@@ -120,13 +120,13 @@
                     </div>
                     <div class="dinamico-baixo"></div>
                 </div>
-            </div>
+    
 
-            <div class="kp1-dashInicio">
-                <div class="kpi-dashInicio">
+            
+                <div class="kpi-dashInicio-ciano">
                     <div class="bloco-cima">
                         <div class="bloco-kpi">
-                            <div class="img-kpi"><img src="../img/mlhrNota-dash.png" alt=""></div>
+                            <div class="img-kpi1"><img src="../img/mlhrNota-dash.png" alt=""></div>
                         </div>
                         <div class="texto-kpi">
                             <h3>Filme com maior nota</h3>
@@ -134,7 +134,7 @@
                     </div>
                     <div class="dinamico-baixo"></div>
                 </div>
-            </div>
+    
 
             </div>
         </div>
@@ -154,16 +154,6 @@
 
     window.onload = exibirAquariosDoUsuario();
 
-    // mudarCor()
-    // function mudarCor() {
-    //     var filmesSelecao = document.getElementById("selecionefilme");
-
-    //     if(filmesSelecao.value == '#'){
-    //         filmesSelecao.classList.add('principal');
-    //     } else {
-    //         filmesSelecao.classList.remove('principal');
-    //     }
-    // }
 
     function exibirAquariosDoUsuario() {
         var aquarios = JSON.parse(sessionStorage.AQUARIOS);

@@ -23,18 +23,18 @@ data_landamento date,
 trilogia varchar(45)
 );
 
-create table visualizacoes (
-idVisualizacoes int AUTO_INCREMENT,
-fkFilmes int,
-fkUsuario int,
-	constraint fkFilmesVisualizacoes
-		foreign key (fkFilmes) references filmes (idFilmes),
-     constraint fkUsuarioVisualizacoes
-		foreign key (fkUsuario) references usuario (idUsuario), 
-primary key (idVisualizacoes, fkFilmes, fkUsuario),
-data_visualizacao date,
-qnt_reassistiu INT
-);
+-- create table visualizacoes (
+-- idVisualizacoes int AUTO_INCREMENT,
+-- fkFilmes int,
+-- fkUsuario int,
+-- 	constraint fkFilmesVisualizacoes
+-- 		foreign key (fkFilmes) references filmes (idFilmes),
+--      constraint fkUsuarioVisualizacoes
+-- 		foreign key (fkUsuario) references usuario (idUsuario), 
+-- primary key (idVisualizacoes, fkFilmes, fkUsuario),
+-- data_visualizacao date,
+-- qnt_reassistiu INT
+-- );
 
 create table avaliacoes (
 idAvaliacoes int AUTO_INCREMENT,
