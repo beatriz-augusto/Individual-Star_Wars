@@ -47,8 +47,9 @@
     </div>
     <div class="container-cadastro">
       <div class="card-cadastro">
-        <h2>Bem-vindo!</h2>
+        
         <div class="formulario">
+          <h2>Bem-vindo!</h2>
           <div class="campo">
             <span>Nome:</span>
             <input id="nome_input" type="text" placeholder="Seu nome" />
@@ -62,23 +63,24 @@
             <input id="senha_input" type="password" placeholder="******" />
           </div>
           <div class="campo">
-            <span>Confirmação da Senha:</span>
+            <span>Confirmação:</span>
             <input id="confirmacao_senha_input" type="password" placeholder="******" />
           </div>
           <div class="campo">
             <span>Nome de usuário:</span>
             <input id="apelido_input" type="text" placeholder="seu nick name" />
           </div>
+          <div class="cadastro-login">
+                        <span>Já possui cadastro?</span><a href="login.html">Login</a>
+                    </div>
+
+                    <button class="botao" onclick="cadastrar()">Cadastrar</button>
         </div>
         <!-- <div id="div_aguardar" class="loading-div">
           <img src="./assets/circle-loading.gif" id="loading-gif" />
         </div> -->
 
-        <div class="cadastro-login">
-                        <span>Já possui cadastro?</span><a href="login.html">Login</a>
-                    </div>
-
-                    <button class="botao" onclick="cadastrar()">Cadastrar</button>
+        
 
         <div id="div_erros_login"></div>
       </div>
@@ -121,14 +123,11 @@
 
 <script>
 
-  // Array para armazenar empresas cadastradas para validação de código de ativação 
   let listaEmpresasCadastradas = [];
 
   function cadastrar() {
-    // aguardar();
 
-    //Recupere o valor da nova input pelo nome do id
-    // Agora vá para o método fetch logo abaixo
+
     var nomeVar = nome_input.value;
     var emailVar = email_input.value;
     var senhaVar = senha_input.value;
@@ -136,7 +135,10 @@
     var apelidoVar = apelido_input.value;
     var idEmpresaVincular
 
-    // Verificando se há algum campo em branco
+    if (!emailVar.includes('@')){
+      alert('o email precisa conter @')
+    }
+
     if (
       nomeVar == "" ||
       emailVar == "" ||
@@ -144,9 +146,11 @@
       confirmacaoSenhaVar == "" ||
       apelidoVar == ""
     ) {
-      cardErro.style.display = "block";
-      mensagem_erro.innerHTML =
-        "(Mensagem de erro para todos os campos em branco)";
+      // cardErro.style.display = "block";
+      // mensagem_erro.innerHTML =
+      //   "(Mensagem de erro para todos os campos em branco)";
+
+      alert('todos os campos devem estar preenchidos')
 
       finalizarAguardar();
       return false;
@@ -154,28 +158,12 @@
       setInterval(sumirMensagem, 5000);
     }
 
-    // Verificando se o código de ativação é de alguma empresa cadastrada
-    // for (let i = 0; i < listaEmpresasCadastradas.length; i++) {
-    //   if (listaEmpresasCadastradas[i].codigo_ativacao == codigoVar) {
-    //     idEmpresaVincular = listaEmpresasCadastradas[i].id
-    //     console.log("Código de ativação válido.");
-    //     break;
-    //   } else {
-    //     cardErro.style.display = "block";
-    //     mensagem_erro.innerHTML = "(Mensagem de erro para código inválido)";
-    //     finalizarAguardar();
-    //   }
-    // }
-
-    // Enviando o valor da nova input
     fetch("/usuarios/cadastrar", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        // crie um atributo que recebe o valor recuperado aqui
-        // Agora vá para o arquivo routes/usuario.js
         nomeServer: nomeVar,
         emailServer: emailVar,
         senhaServer: senhaVar,
@@ -209,26 +197,6 @@
 
     return false;
   }
-
-  // Listando empresas cadastradas 
-  // function listar() {
-  //   fetch("/empresas/listar", {
-  //     method: "GET",
-  //   })
-  //     .then(function (resposta) {
-  //       resposta.json().then((empresas) => {
-  //         empresas.forEach((empresa) => {
-  //           listaEmpresasCadastradas.push(empresa);
-
-  //           console.log("listaEmpresasCadastradas")
-  //           console.log(listaEmpresasCadastradas[0].codigo_ativacao)
-  //         });
-  //       });
-  //     })
-  //     .catch(function (resposta) {
-  //       console.log(`#ERRO: ${resposta}`);
-  //     });
-  // }
 
   function sumirMensagem() {
     cardErro.style.display = "none";

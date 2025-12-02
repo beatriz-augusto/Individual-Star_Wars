@@ -362,7 +362,7 @@ body {
    flex-direction: column;
    background-color: #000;
    width: 800px;
-   height: 500px;
+   height: 600px;
     border-radius: 30px;
 }
 
@@ -373,7 +373,7 @@ body {
 
 .card-cadastro h2 {
         color: #fff;
-    margin-top: 20px;
+    margin-top: -50px;
     font-size: 40px;
 }
 
