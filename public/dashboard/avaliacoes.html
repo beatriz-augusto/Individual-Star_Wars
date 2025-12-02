@@ -106,7 +106,7 @@
                             <br>
                             <br>
                             <button>Enviar</button>
-                            <button onclick="atualizarFeed()">atualizarFeed</button>
+                            <!-- <button onclick="atualizarFeed()">atualizarFeed</button> -->
                         </form>
                     </div>
 
@@ -204,7 +204,11 @@
                 window.alert("Post realizado com sucesso pelo usuario de ID: " + idUsuario + "!");
                 // window.location = "/dashboard/mural.html";
                 limparFormulario();
+                for (var i = 0; i < listaEstrelas.length; i++){
+            listaEstrelas[i].classList.remove("preenchida");
+                }
                 finalizarAguardar();
+                atualizarFeed()
 
             } else if (resposta.status == 404) {
                 window.alert("Deu 404!");
