@@ -18,8 +18,8 @@
 </head>
 
 
-<!-- onload="validarSessao(), atualizarFeed()" -->
-<body   style="background-color: #161618;">
+<!--  -->
+<body  onload="validarSessao(), atualizarFeed()" style="background-color: #161618;">
 
     <div class="janela">
 
@@ -32,9 +32,6 @@
                 <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
             </div>
 
-            <div class="btn-nav">
-                <h3>Gráfico geral</h3>
-            </div>
 
             <div class="btn-nav-white">
                 <a href="./dashboard.html">
@@ -208,6 +205,7 @@
                 // window.location = "/dashboard/mural.html";
                 limparFormulario();
                 finalizarAguardar();
+
             } else if (resposta.status == 404) {
                 window.alert("Deu 404!");
             } else {

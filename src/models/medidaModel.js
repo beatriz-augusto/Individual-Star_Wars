@@ -25,11 +25,13 @@ function buscarUltimasMedidas() {
 function buscarGraficoIgual() {
 
     var instrucaoSql = `select 
-	nota,
-    count(nota) as qntAvaliacoes
-from avaliacoes
-GROUP BY nota
-order by nota;`;
+    round(AVG(a.nota), 1) as media,
+    f.titulo
+from avaliacoes as a
+join filmes as f
+on a.fkFilmes = f.idFilmes
+GROUP BY f.idFilmes
+order by f.idFilmes;`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -37,15 +39,23 @@ order by nota;`;
 
 function buscarUltimasMedidasEspeficico(idFilmes){
     var instrucaoSql = `SELECT 
-    f.idFilmes
-    f.titulo,
-    COUNT(a.idAvaliacoes)      AS qntAvaliacoes,
-    ROUND(AVG(a.nota), 1)      AS media
-FROM filmes f
+    kpiFilme.media,
+    kpiFilme.qntAvaliacoes,
+    kpimelhorFilme.titulo
+FROM (SELECT 
+	COUNT(idAvaliacoes) as qntAvaliacoes, 
+	ROUND(AVG(nota), 1) as media
+		FROM filmes f
 LEFT JOIN avaliacoes a 
     ON a.fkFilmes = f.idFilmes
 WHERE f.idFilmes = ${idFilmes}
-GROUP BY f.idFilmes, f.titulo;`
+GROUP BY f.idFilmes, f.titulo) kpiFilme,
+( SELECT 
+        f.titulo
+            FROM filmes f
+        JOIN avaliacoes a ON a.fkFilmes = f.idFilmes
+        GROUP BY f.idFilmes, f.titulo
+        LIMIT 1 ) as kpiMelhorfilme;`
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);

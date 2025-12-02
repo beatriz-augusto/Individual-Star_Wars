@@ -19,6 +19,10 @@ body {
   font-family: 'Barlow', 'Segoe UI', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+.janela {
+  background-color: #000;
+}
+
 .dash-right .avisos .container {
   display: flex;
   flex-direction: column;
@@ -44,7 +48,7 @@ body {
 
 .dash-right .avisos .div-form textarea {
   width: 95%;
-  border: 3px solid #e6005a;
+  border: 3px solid #4f46c7;
   background-color: white;
   border-radius: 5px;
 }
@@ -58,7 +62,7 @@ body {
   font-size: 18px;
   padding: 10px 15px;
   color: white;
-  background-color: #e6005a;
+  background-color: #4f46c7;
   width: 120px;
 }
 
@@ -112,7 +116,7 @@ body {
 /* pagina graficos */
 
 .dash-header {
-  background-color: #212124;
+  background-color: #000;
 }
 
 .dash {
@@ -120,7 +124,7 @@ body {
   position: relative;
   top: 0;
   left: 20%;
-  background-color: #161618;
+  background-color: #000000;
   height: 100vh;
   overflow: auto;
 }
@@ -166,25 +170,7 @@ body {
   font-weight: 800;
 }
 
-.perigo-frio {
-  background-color: #5c6bc0;
-}
 
-.perigo-quente {
-  background-color: #ff7043;
-}
-
-.alerta-frio {
-  background-color: #42a5f5;
-}
-
-.alerta-quente {
-  background-color: #ffee58;
-}
-
-.ideal {
-  background-color: #9ccc65;
-}
 
 .cards {
   display: flex;
@@ -196,45 +182,7 @@ body {
   color: white;
 }
 
-.card-aquario {
-  margin: 2%;
-  min-width: 40%;
-  max-width: 50%;
-  width: fit-content;
-  flex-wrap: wrap;
-  display: flex;
-  /* text-align: center; */
-  height: 180px;
-  /* justify-content: right; */
-  background-color: #212124;
-  font-size: 20px;
-}
 
-.card-aquario h1 {
-  width: fit-content;
-}
-
-.card-aquario p {
-  margin: 0;
-  font-size: 50px;
-  font-weight: lighter;
-  text-align: left;
-}
-
-.desc-aquario {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  width: 100%;
-}
-
-.desc-aquario .cor-alerta {
-  width: 30px;
-}
-
-.title-aquario {
-  width: 100%;
-}
 
 
 .cards h1 {
@@ -325,7 +273,7 @@ canvas {
   height: 100% !important;
 }
 
-/* PAGINA DOS GRÁFICOS 2023 */
+/* PAGINA DOS GRÁFICOS */
 
 .janela {
   display: flex;
@@ -348,7 +296,7 @@ canvas {
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  border-right: 3px solid #32b9cd;
+  /* border-right: 3px solid #4f46c7; */
   background-color: #212124;
 }
 
@@ -356,7 +304,7 @@ canvas {
   display: flex;
   width: 70%;
   height: fit-content;
-  background-color: #161618;
+  background-color: #000;
   position: relative;
   top: 0;
   left: 25%;
@@ -367,7 +315,7 @@ canvas {
 
 
 .header-left h1 {
-  color: #32b9cd;
+  color: #4f46c7;
 }
 
 .hello {
@@ -379,7 +327,7 @@ canvas {
 .hello h3 {
   color: #e3b062;
   font-weight: 300;
-  font-size: 1.2rem;
+  font-size: 23px;
 }
 
 .hello h3 span {
@@ -397,15 +345,21 @@ canvas {
 
 .btn-nav-white {
   width: 40%;
-  background-color: white;
-  border: 3px solid #e6005a;
-  border-radius: 5px;
+  background-color: transparent;
+  border: 3px solid #f6f3f4;
+  border-radius: 8px;
   text-align: center;
   padding: 2% 5%;
 }
 
+.btn-nav-white:hover {
+  filter: brightness(1.2);
+    box-shadow: 0 0 10px #8F00FF;
+    transition: ease 0.5s;
+}
+
 .btn-nav-white h3 {
-  color: #e6005a;
+  color: #fefdfd;
   padding: 0;
   margin: 0;
 }
@@ -420,13 +374,19 @@ canvas {
   margin: 0;
   padding: 0;
   width: 20%;
-  background-color: #32b9cd;
+  background-color: #4f46c7;
   color: white;
   border-radius: 10px;
   text-align: center;
   padding: 10px 15px;
   margin-bottom: 100px;
   cursor: pointer;
+}
+
+.btn-logout:hover {
+ filter: brightness(1.2);
+    box-shadow: 0 0 10px #8F00FF;
+    transition: ease 0.5s;
 }
 
 #div_erros_login {
@@ -441,7 +401,7 @@ canvas {
 }
 
 .estrela {
-    background-image: url(../img/estrela.png);
+    background-image: url(../img/estrela-vazia.png);
      background-size: cover;
     width: 50px;
     height: 50px;
@@ -579,6 +539,22 @@ width: 100%;
   color: white;
 }
 
+.bloco-dinamicoNumero {
+  font-size: 60px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bloco-dinamicoTexto {
+  font-size: 30px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 /* Fim das kpis  */
 
 /* inicio graficos  */
@@ -614,4 +590,8 @@ width: 100%;
 .titulo-grafico h3{
   font-size: 25px;
   color: white;
+}
+
+#graficoIgual {
+  color: #fff;
 }

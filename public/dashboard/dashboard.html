@@ -10,7 +10,6 @@
 
 
     <link rel="stylesheet" href="./../css/dashboards.css">
-    <link rel="stylesheet" href="./../css/estilo.css" />
     <script src="../js/sessao.js"></script>
     <script src="./../js/alerta.js"></script>
 
@@ -39,10 +38,6 @@
                 <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
             </div>
 
-            <div class="btn-nav">
-                <h3>Gráfico geral</h3>
-            </div>
-
             <div class="btn-nav-white">
                 <a href="./dashboard.html">
                     <h3>Gráfico específico</h3>
@@ -50,7 +45,7 @@
             </div>
 
             <div class="btn-nav-white">
-                <a href="./mural.html">
+                <a href="./avaliacoes.html">
                     <h3>Avalie o filme</h3>
                 </a>
             </div>
@@ -99,7 +94,7 @@
                             <h3>Quantidade votos</h3>
                         </div>
                     </div>
-                    <div id="kpi_qntAvaliacoes"></div>
+                    <div id="kpi_qntAvaliacoes" class="bloco-dinamicoNumero"></div>
                 </div>
             
 
@@ -113,7 +108,7 @@
                             <h3>Média Geral</h3>
                         </div>
                     </div>
-                    <div id="kpi_media"></div>
+                    <div id="kpi_media" class="bloco-dinamicoNumero"></div>
                 </div>
     
 
@@ -127,7 +122,7 @@
                             <h3>Filme com maior nota</h3>
                         </div>
                     </div>
-                    <div id="kpi_maiorNota"></div>
+                    <div id="kpi_maiorNota" class="bloco-dinamicoTexto"></div>
                 </div>
     
 
@@ -136,12 +131,10 @@
             <div class="graficos-grupo">
 
                 <div class="graficos" id="graficoGeral">
-                <div class="titulo-grafico"><h3>Distribuição de estrelas por filme</h3></div>
                 <canvas id="graficoIgual"></canvas>
         </div>
 
         <div class="graficos" id="graficoEspecifico">
-                <div class="titulo-grafico"><h3>Distribuição de estrelas no filme selecionado</h3></div>
                 <canvas id="graficoDiferente"></canvas>
         </div>
             </div>
@@ -163,10 +156,19 @@
     var graficoGeral = null;
     var graficoFilme = null;
 
-    window.onload = atualizarDash();
+    window.onload = function () {
+        console.log("Página carregada, iniciando dashboard em modo geral");
 
-    carregarKpisGerais();
-    carregarGraficosGerais();
+        document.getElementById("selecionefilme").value = "#";
+
+        document.getElementById("graficoEspecifico").style.display = "none";
+
+        carregarKpisGerais();
+        carregarGraficosGerais();
+    };
+
+    
+    
 
     function atualizarDash() {
         var selectFilme = document.getElementById("selecionefilme")
@@ -185,12 +187,12 @@
             graficoEspecifico.style.display = 'block';
 
             carregarKpisFilmes(filmes);
-            carregarGraficoFilmes(filmes)
+            carregarGraficosFilme(filmes);
         }
     }
 
     function carregarKpisGerais() {
-        fetch("/medidas/kpis"), ({ cache: 'no-store' }).then(function (response) {
+        fetch("/medidas/kpis", { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
                 response.json().then(function (dados) {
                     console.log(`KPIS gerais: ${JSON.stringify(dados)}`);
@@ -198,9 +200,9 @@
                     if(dados.length > 0){
                         var kpi = dados[0];
 
-                        kpi_qntAvaliacoes.innerHTML = kpi.qntAvaliacoes
-                        kpi_media.innerHTML.innerHTML = kpi.media
-                        kpi_maiorNota.innerHTML.innerHTML = kpi.maiorNota
+                        kpi_qntAvaliacoes.innerHTML = kpi.qntAvaliacoes;
+                        kpi_media.innerHTML = Number(kpi.media);
+                        kpi_maiorNota.innerHTML = kpi.titulo;
                     }
                 });
             }else {
@@ -211,5 +213,158 @@
         });
     }
 
+    function carregarKpisFilmes(idFilmes){
+        fetch(`/medidas/kpis/${idFilmes}`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (dados) {
+                    console.log(`KPIS especificas: ${JSON.stringify(dados)}`);
+                    
+                    if(dados.length > 0){
+                        var kpi = dados[0];
 
+                        kpi_qntAvaliacoes.innerHTML = "";
+                        kpi_media.innerHTML = "";
+                        kpi_maiorNota.innerHTML = "";
+
+                        kpi_qntAvaliacoes.innerHTML = kpi.qntAvaliacoes;
+                        kpi_media.innerHTML = Number(kpi.media);
+                        kpi_maiorNota.innerHTML = kpi.titulo;
+                    }
+                });
+            }else {
+                console.error("nenhum dado encontrado kpis gerais")
+            }
+        }).catch(function(error){
+            console.error("erro:", error.mensage)
+        });
+    }
+
+    function carregarGraficosGerais() {
+        fetch("/medidas/grafico", { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Grafico geral: ${JSON.stringify(resposta)}`);
+                    plotarGraficoGeral(resposta);
+                });
+            }else {
+                console.error("nenhum dado encontrado kpis gerais")
+            }
+        }).catch(function(error){
+            console.error("erro:", error.menssage)
+        });
+    }
+
+    var graficoGeral = null;
+
+    function plotarGraficoGeral(resposta) {
+
+       var labels = [];
+       var valorDinamico = [];
+
+       for(var i = 0; i < resposta.length; i++){
+        var dados = resposta[i];
+
+        labels.push(dados.titulo);
+        valorDinamico.push(Number(dados.media))
+       }
+
+       var ctx = document.getElementById("graficoIgual")
+       graficoGeral = new Chart(graficoIgual, {
+        type: "bar",
+        data: {
+            labels: labels,
+            datasets: [{
+                data:valorDinamico,
+                backgroundColor: "#cb6ce6",
+                borderColor: "#0077ff",
+            }]
+        },
+        options: {
+            responsive:true,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    max:5,
+                    color: "#fff"
+                }
+            },
+        plugins: {
+            title: {
+                display: true,
+                text: "Média de estrelas em todos os filmes",
+                color: "#fff",
+                font: {
+                    size:23,
+                    weight: "bold"
+                }
+            }
+        }
+        }
+       });
+    }
+
+       function carregarGraficosFilme(idFilmes) {
+        fetch(`/medidas/grafico/${idFilmes}`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Grafico geral: ${JSON.stringify(resposta)}`);
+                    plotarGraficoEspecifico(resposta);
+                });
+            }else {
+                console.error("nenhum dado encontrado kpis gerais")
+            }
+        }).catch(function(error){
+            console.error("erro:", error.menssage)
+        });
+    }
+
+    var graficoEspecifico = null;
+    
+function plotarGraficoEspecifico(resposta) {
+
+       var labels = [];
+       var valorDinamico = [];
+
+       for(var i = 0; i < resposta.length; i++){
+        var dados = resposta[i];
+
+        labels.push(dados.nota);
+        valorDinamico.push(Number(dados.qntAvaliacoes))
+       }
+
+       var ctx = document.getElementById("graficoDiferente")
+       graficoEspecifico = new Chart(graficoDiferente, {
+        type: "bar",
+        data: {
+            labels: labels,
+            datasets: [{
+                data:valorDinamico,
+                backgroundColor: "#cb6ce6",
+                borderColor: "#0077ff",
+            }]
+        },
+        options: {
+            responsive:true,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    max:5,
+                    color: "#fff"
+                }
+            },
+        plugins: {
+            title: {
+                display: true,
+                text: "Média de estrelas no filme selecionado",
+                color: "#fff",
+                font: {
+                    size:23,
+                    weight: "bold"
+                }
+            }
+        }
+        }
+       });
+
+    }
 </script>

@@ -23,7 +23,7 @@ router.get("/kpis/:idFilmes", function (req, res) {
     medidaController.buscarUltimasMedidasEspeficico(req, res);
 })
 
-router.get("/grafico/:Filmes", function (req, res) {
+router.get("/grafico/:idFilmes", function (req, res) {
     medidaController.buscarGraficoDiferente(req, res);
 })
 
