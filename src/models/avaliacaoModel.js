@@ -90,7 +90,7 @@ from avaliacoes as a
 function publicar(idAvaliacoes, titulo, comentario, fkUsuario, nota, fkFilmes) {
     console.log("ACESSEI O AVALIACOES MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function publicar(): ", titulo, comentario, fkUsuario, fkFilmes);
     var instrucaoSql = `
-        INSERT INTO Avaliacoes (idAvaliacoes, titulo, comentario, fkUsuario, nota, fkFilmes) VALUES ('${idAvaliacoes}','${titulo}', '${comentario}', ${fkUsuario}, '${nota}', '${fkFilmes}');
+        INSERT INTO avaliacoes (idAvaliacoes, titulo, comentario, fkUsuario, nota, fkFilmes) VALUES ('${idAvaliacoes}','${titulo}', '${comentario}', ${fkUsuario}, '${nota}', '${fkFilmes}');
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -99,7 +99,7 @@ function publicar(idAvaliacoes, titulo, comentario, fkUsuario, nota, fkFilmes) {
 function editar(novoComentario, idAvaliacoes, fkFilmes, fkUsuario) {
     console.log("ACESSEI O Avaliacoes MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function editar(): ", novoComentario, idAvaliacoes, fkFilmes, fkUsuario);
     var instrucaoSql = `
-        UPDATE Avaliacoes SET comentario = '${novoComentario}' WHERE idAvaliacoes = ${idAvaliacoes} AND fkFilmes = ${fkFilmes} AND fkUsuario = ${fkUsuario};
+        UPDATE avaliacoes SET comentario = '${novoComentario}' WHERE idAvaliacoes = ${idAvaliacoes} AND fkFilmes = ${fkFilmes} AND fkUsuario = ${fkUsuario};
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -108,7 +108,7 @@ function editar(novoComentario, idAvaliacoes, fkFilmes, fkUsuario) {
 function deletar(idAvaliacoes, fkFilmes, fkUsuario) {
     console.log("ACESSEI O Avaliacoes MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function deletar():", idAvaliacoes);
     var instrucaoSql = `
-        DELETE FROM Avaliacoes WHERE id = ${idAvaliacoes} AND fkFilmes = ${fkFilmes} AND fkUsuario = ${fkUsuario};
+        DELETE FROM avaliacoes WHERE id = ${idAvaliacoes} AND fkFilmes = ${fkFilmes} AND fkUsuario = ${fkUsuario};
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);

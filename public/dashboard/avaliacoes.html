@@ -92,6 +92,7 @@
                                 <!-- this  -->
                                 
                                 <br>
+                                
                                 Título:
                                 <br>
                                 <input name="titulo" id="input_titulo" maxlength="100" type="text">
@@ -201,7 +202,7 @@
             console.log("resposta: ", resposta);
 
             if (resposta.ok) {
-                window.alert("Post realizado com sucesso pelo usuario de ID: " + idUsuario + "!");
+                // window.alert("Post realizado com sucesso pelo usuario de ID: " + idUsuario + "!");
                 // window.location = "/dashboard/mural.html";
                 limparFormulario();
                 for (var i = 0; i < listaEstrelas.length; i++){
@@ -275,7 +276,6 @@
 
                         // criando e manipulando elementos do HTML via JavaScript
                         var divPublicacao = document.createElement("div");
-                        // var spanID = document.createElement("span");
                         var spanTitulo = document.createElement("span");
                         var spanNota = document.createElement("span");
                         var spanNome = document.createElement("span");
@@ -300,15 +300,15 @@
                         spanNota.className = "publicacao-nota";
                         divDescricao.className = "publicacao-comentario";
 
-                        divButtons.className = "div-buttons"
+                        // divButtons.className = "div-buttons"
 
-                        btnEditar.className = "publicacao-btn-editar"
-                        btnEditar.id = "btnEditar" + publicacao.idAvaliacoes;
-                        btnEditar.setAttribute("onclick", `editar(${publicacao.idAvaliacoes})`);
+                        // btnEditar.className = "publicacao-btn-editar"
+                        // btnEditar.id = "btnEditar" + publicacao.idAvaliacoes;
+                        // btnEditar.setAttribute("onclick", `editar(${publicacao.idAvaliacoes})`);
 
-                        btnDeletar.className = "publicacao-btn-editar"
-                        btnDeletar.id = "btnDeletar" + publicacao.idAvaliacoes;
-                        btnDeletar.setAttribute("onclick", `deletar(${publicacao.idAvaliacoes})`);
+                        // btnDeletar.className = "publicacao-btn-editar"
+                        // btnDeletar.id = "btnDeletar" + publicacao.idAvaliacoes;
+                        // btnDeletar.setAttribute("onclick", `deletar(${publicacao.idAvaliacoes})`);
 
                         // divPublicacao.appendChild(spanID);
                         divPublicacao.appendChild(spanNome);
@@ -316,8 +316,8 @@
                         divPublicacao.appendChild(spanNota);
                         divPublicacao.appendChild(divDescricao);
                         divPublicacao.appendChild(divButtons);
-                        divButtons.appendChild(btnEditar);
-                        divButtons.appendChild(btnDeletar);
+                        // divButtons.appendChild(btnEditar);
+                        // divButtons.appendChild(btnDeletar);
                         feed.appendChild(divPublicacao);
                     }
 

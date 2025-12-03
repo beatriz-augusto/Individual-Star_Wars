@@ -14,7 +14,7 @@
 </head>
 
 <body>
-  <!--header inicio-->
+
     <div class="div_navBar">
         <img src="img/Logo.png" alt="">
         <ul class="navBar">
@@ -25,19 +25,15 @@
                 <a href="filmes.html">Filmes</a>
             </li>
             <li>
-                <a href="personagens">personagens</a>
-            </li>
-            <li>
-                <a href="historia">historia da saga</a>
+                <a href="historia.html">historia da saga</a>
             </li>
             <li class="barra">|</li>
             <li>
-                <a href="cadastro">Cadastre-se</a>
+                <a href="cadastro.html">Cadastre-se</a>
             </li>
         </ul>
     </div>
-  </div>
-  <!--header fim-->
+
 
   <div class="login">
     <div class="alerta_erro">
@@ -97,16 +93,13 @@
                     <a href="index.html">Página Inicial</a>
                 </li>
                 <li>
-                    <a href="filmes">Filmes</a>
+                    <a href="filmes.html">Filmes</a>
                 </li>
                 <li>
-                    <a href="personagens">personagens</a>
+                    <a href="cadastro.html">Cadastre-se</a>
                 </li>
                 <li>
-                    <a href="cadastro">Cadastre-se</a>
-                </li>
-                <li>
-                    <a href="historia">historia da saga</a>
+                    <a href="historia.html">historia da saga</a>
                 </li>
             </ul>
         </div>
@@ -177,12 +170,11 @@
         if (resposta.ok) {
           cardErro.style.display = "block";
 
-          mensagem_erro.innerHTML =
-            "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+          
 
           setTimeout(() => {
             window.location = "login.html";
-          }, "2000");
+          }, "100");
 
           limparFormulario();
           finalizarAguardar();

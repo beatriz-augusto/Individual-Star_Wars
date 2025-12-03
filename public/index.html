@@ -25,10 +25,7 @@
                 <a href="filmes.html">Filmes</a>
             </li>
             <li>
-                <a href="personagens">personagens</a>
-            </li>
-            <li>
-                <a href="historia">historia da saga</a>
+                <a href="historia.html">historia da saga</a>
             </li>
             <li class="barra">|</li>
             <li>
@@ -61,7 +58,7 @@
             </div>
             <div class="box-sobre">
                 <div class="box-sobre-img">
-                    <img src="img/conectar-fas.png" alt="">
+                    <img src="img/resenha.jpg" alt="">
                 </div>
                 <div class="decoracao-sobre"></div>
                 <div class="titulo-box-sobre">
@@ -73,7 +70,7 @@
             </div>
             <div class="box-sobre">
                 <div class="box-sobre-img">
-                    <img src="img/conectar-fas.png" alt="">
+                    <img src="img/publique-avaliacoes.png" alt="">
                 </div>
                 <div class="decoracao-sobre"></div>
                 <div class="titulo-box-sobre">
@@ -85,7 +82,7 @@
             </div>
             <div class="box-sobre">
                 <div class="box-sobre-img">
-                    <img src="img/conectar-fas.png" alt="">
+                    <img src="img/descubra.jpg" alt="">
                 </div>
                 <div class="decoracao-sobre"></div>
                 <div class="titulo-box-sobre">
@@ -116,7 +113,7 @@
             </p>
         </p>
         <div class="button-historia">
-            <button>saiba mais</button>
+            <button onclick="historiar()">saiba mais</button>
         </div>
         </div>
     </div>
@@ -124,7 +121,7 @@
     <div class="filmes">
         <div class="bloco-superior">
             <div class="bloco-texto"><label>Viage pelo universo de Star Wars, entre nesse mundo cheio de batalhas épicas e ensinamentos para a vida, aqui você pode criar conhecimentos importantes para te guiar na sua jornada</label></div>
-           <div class="button-filmes"><button>Saiba mais</button></div> 
+           <div class="button-filmes"><button onclick="saber()">Saiba mais</button></div> 
         </div>
     </div>
 
@@ -140,13 +137,10 @@
                     <a href="filmes.html">Filmes</a>
                 </li>
                 <li>
-                    <a href="personagens">personagens</a>
+                    <a href="cadastro.html">Cadastre-se</a>
                 </li>
                 <li>
-                    <a href="cadastro">Cadastre-se</a>
-                </li>
-                <li>
-                    <a href="historia">historia da saga</a>
+                    <a href="historia.html">historia da saga</a>
                 </li>
             </ul>
         </div>
@@ -158,3 +152,13 @@
     </div>
 
 </html>
+
+<script>
+    function historiar() {
+        window.location.href = 'historia.html'
+    }
+
+    function saber() {
+        window.location.href = 'filmes.html'
+    }
+</script>

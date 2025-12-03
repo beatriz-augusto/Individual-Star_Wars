@@ -2,10 +2,6 @@ var medidaModel = require("../models/medidaModel");
 
 function buscarUltimasMedidas(req, res) {
 
-    // const limite_linhas = 7;
-    // var idAquario = req.params.idAquario;
-    // console.log(`Recuperando as ultimas ${limite_linhas} medidas`);
-
     medidaModel.buscarUltimasMedidas().then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
@@ -22,7 +18,6 @@ function buscarUltimasMedidas(req, res) {
 
 function buscarGraficoIgual(req, res) {
 
-    // var idAquario = req.params.idAquario;
 
     console.log(`Recuperando medidas em tempo real`);
 
