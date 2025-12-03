@@ -277,6 +277,7 @@
                         // criando e manipulando elementos do HTML via JavaScript
                         var divPublicacao = document.createElement("div");
                         var spanTitulo = document.createElement("span");
+                        var spanTituloComentario = document.createElement("span");
                         var spanNota = document.createElement("span");
                         var spanNome = document.createElement("span");
                         var divDescricao = document.createElement("div");
@@ -287,6 +288,7 @@
 
                         // spanID.innerHTML = "ID: <b>" + publicacao.idAvaliacoes + "</b>";
                         spanTitulo.innerHTML = "Filme: <b>" + publicacao.titulo + "</b>";
+                        spanTituloComentario.innerHTML = "Título da avaliação: <b>" + publicacao.tituloComentario + "</b>";
                         spanNota.innerHTML = "Nota: <b>" + publicacao.nota + "</b>";
                         spanNome.innerHTML = "Autor: <b>" + publicacao.nome + "</b>";
                         divDescricao.innerHTML = "Comentário: <b>" + publicacao.comentario + "</b>";
@@ -297,6 +299,7 @@
                         spanTitulo.id = "inputNumero" + publicacao.idAvaliacoes;
                         spanNome.className = "publicacao-nome";
                         spanTitulo.className = "publicacao-titulo";
+                        spanTituloComentario.className = "publicacao-tituloComentario";
                         spanNota.className = "publicacao-nota";
                         divDescricao.className = "publicacao-comentario";
 
@@ -313,6 +316,7 @@
                         // divPublicacao.appendChild(spanID);
                         divPublicacao.appendChild(spanNome);
                         divPublicacao.appendChild(spanTitulo);
+                        divPublicacao.appendChild(spanTituloComentario);
                         divPublicacao.appendChild(spanNota);
                         divPublicacao.appendChild(divDescricao);
                         divPublicacao.appendChild(divButtons);

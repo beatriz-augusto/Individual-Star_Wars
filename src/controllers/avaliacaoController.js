@@ -69,7 +69,8 @@ function publicar(req, res) {
     var idUsuario = req.body.idUsuario;
     var nota = req.body.nota;
     var fkFilmes = req.body.fkFilme;
-    var idAvaliacoes = Number(Math.floor(Math.random() * 999) + 1);
+    var idAvaliacoes = Number(Math.floor(Math.random() * 999) + 1)
+    var tituloComentario = req.body.tituloComentario;
     console.log("Controller avaliações: " 
         + titulo + '/'+
         + descricao + '/'+
